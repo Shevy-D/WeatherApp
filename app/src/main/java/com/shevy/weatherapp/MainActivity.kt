@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -68,11 +67,9 @@ class MainActivity : AppCompatActivity() {
                 val stream: InputStream = conection!!.inputStream
                 reader = BufferedReader(InputStreamReader(stream))
 
-                val buffer: StringBuffer = StringBuffer()
-                //var line: String = ""
+                val buffer = StringBuffer()
 
                 for (line in reader.readLines()) {
-                    //while ((reader.readLine().also { line = it }) != null)
                     buffer.append(line).append("\n")
                 }
 
@@ -100,13 +97,11 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 var jsonObject: JSONObject = JSONObject(result)
-                //result_info.text = result.toString()
                 result_info.text =
                     "Temperature: " + jsonObject.getJSONObject("main").getDouble("temp")
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
-
     }
 }
